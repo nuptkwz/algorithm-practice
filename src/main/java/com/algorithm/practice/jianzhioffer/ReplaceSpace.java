@@ -23,4 +23,39 @@ public class ReplaceSpace {
         String string = str.toString();
         return string.replace(" ", "%20");
     }
+
+    /**
+     * Description 用StringBuffer来实现
+     * Param [str]
+     * return java.lang.String
+     */
+    public String handleWithCharAt(StringBuffer str) {
+        StringBuilder sb = new StringBuilder();
+        String string = str.toString();
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) != ' ')
+                sb.append(string.charAt(i));
+            else
+                sb.append("%20");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Description 通过string 字符串来处理
+     * Param [str]
+     * return java.lang.String
+     */
+    public String handleWithString(StringBuffer str) {
+        String resultStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            char curChar = str.charAt(i);
+            if (curChar == ' ') {
+                resultStr += "%20";
+            } else {
+                resultStr += curChar;
+            }
+        }
+        return resultStr;
+    }
 }
