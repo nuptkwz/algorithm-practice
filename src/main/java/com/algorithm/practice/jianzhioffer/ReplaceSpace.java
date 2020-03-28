@@ -11,7 +11,18 @@ public class ReplaceSpace {
 
     public static void main(String[] args) {
         StringBuffer str = new StringBuffer("We Are Happy");
-        System.out.println(handleWithReplace(str));
+
+        String withReplace = handleWithReplace(str);
+        System.out.println("withReplace:" + withReplace);
+
+        String withCharAt = handleWithCharAt(str);
+        System.out.println("withCharAt:" + withCharAt);
+
+        String withString = handleWithString(str);
+        System.out.println("withString:" + withString);
+
+        String string = handleWithString(str);
+        System.out.println("string：" + string);
     }
 
     /**
@@ -29,7 +40,7 @@ public class ReplaceSpace {
      * Param [str]
      * return java.lang.String
      */
-    public String handleWithCharAt(StringBuffer str) {
+    private static String handleWithCharAt(StringBuffer str) {
         StringBuilder sb = new StringBuilder();
         String string = str.toString();
         for (int i = 0; i < string.length(); i++) {
@@ -46,16 +57,16 @@ public class ReplaceSpace {
      * Param [str]
      * return java.lang.String
      */
-    public String handleWithString(StringBuffer str) {
-        String resultStr = "";
+    private static String handleWithString(StringBuffer str) {
+        StringBuilder resultStr = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
             char curChar = str.charAt(i);
             if (curChar == ' ') {
-                resultStr += "%20";
+                resultStr.append("%20");
             } else {
-                resultStr += curChar;
+                resultStr.append(curChar);
             }
         }
-        return resultStr;
+        return resultStr.toString();
     }
 }
