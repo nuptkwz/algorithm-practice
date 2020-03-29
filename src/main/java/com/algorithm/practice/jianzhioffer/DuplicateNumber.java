@@ -1,6 +1,7 @@
 package com.algorithm.practice.jianzhioffer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class DuplicateNumber {
         System.out.println("handleWithHashSet:" + handleWithHashSet(numbers, numbers.length, duplication));
         System.out.println("handleWithStringBuffer:" + handleWithStringBuffer(numbers, numbers.length, duplication));
         System.out.println("handleWithArray:" + handleWithArray(numbers, numbers.length, duplication));
+        System.out.println("handleWithMap:" + handleWithMap(numbers, numbers.length, duplication));
+        System.out.println("handleWithChar:" + handleWithChar(numbers, numbers.length, duplication));
     }
 
 
@@ -113,6 +116,41 @@ public class DuplicateNumber {
                 return true;
             }
             k[numbers[i]] = true;
+        }
+        return false;
+    }
+
+    /**
+     * Description 用hasMap put的返回值，如果已经存在则put的结果返回上一个value值
+     * Param [numbers, length, duplication]
+     * return boolean
+     */
+    private static boolean handleWithMap(int[] numbers, int length, int[] duplication) {
+        HashMap<Integer, Object> maps = new HashMap<>();
+        for (int i = 0; i < length; i++) {
+            Object result = maps.put(numbers[i], i);
+            if (result != null) {
+                duplication[0] = numbers[i];
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Description 创建一个char [] chars,下标为numbers的值，每次遍历赋值'a'，要是第二次发现有a，
+     * 则重复了，赋值返回
+     * Param [numbers, length, duplication]
+     * return boolean
+     */
+    private static boolean handleWithChar(int[] numbers, int length, int[] duplication) {
+        char [] chars = new char[length];
+        for(int i=0;i<length;i++){
+            if(chars[numbers[i]]=='a'){
+                duplication[0] = numbers[i];
+                return true;
+            }
+            chars[numbers[i]] = 'a';
         }
         return false;
     }
