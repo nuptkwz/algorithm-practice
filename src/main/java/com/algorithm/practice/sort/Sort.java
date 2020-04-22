@@ -9,8 +9,10 @@ public class Sort {
 
     public static void main(String[] args) {
         int[] arr = {4, 49, 47, 2, 13, 56, 1, 36};
-//        BubbleSort(arr);
-//        SelectionSort(arr);
+//        bubbleSort(arr);
+//        selectionSort(arr);
+//        insertionSort(arr);
+        quickSort(arr);
     }
 
     /**
@@ -19,7 +21,7 @@ public class Sort {
      * Param [arr]
      * return void
      */
-    private static void BubbleSort(int[] arr) {
+    private static void bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j] < arr[i]) {
@@ -30,10 +32,11 @@ public class Sort {
             }
         }
 
-        System.out.println("BubbleSort排序结果为：");
+        System.out.print("BubbleSort排序结果为：");
         for (int num : arr) {
             System.out.print(num + " ");
         }
+        System.out.println("--------------------------");
     }
 
     /**
@@ -45,7 +48,7 @@ public class Sort {
      * Param [arr]
      * return void
      */
-    private static void SelectionSort(int[] arr) {
+    private static void selectionSort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int minIndex = i;
             for (int j = i + 1; j < arr.length; j++) {
@@ -60,10 +63,11 @@ public class Sort {
             }
         }
 
-        System.out.println("SelectionSort排序结果为：");
+        System.out.print("SelectionSort排序结果为：");
         for (int num : arr) {
             System.out.print(num + " ");
         }
+        System.out.println("--------------------------");
     }
 
     /**
@@ -73,12 +77,59 @@ public class Sort {
      * Param [arr]
      * return void
      */
-    private static void InsertionSort(int[] arr) {
+    private static void insertionSort(int[] arr) {
 
+        for (int i = 0; i < arr.length; i++) {
+            int j = i;
+            int insertNum = arr[j];
+            while (j > 0 && insertNum < arr[j - 1]) {
+                arr[j] = arr[--j];
+            }
+            arr[j] = insertNum;
+        }
 
-        System.out.println("InsertionSort排序结果为：");
+        System.out.print("InsertionSort排序结果为：");
         for (int num : arr) {
             System.out.print(num + " ");
+        }
+        System.out.println("--------------------------");
+    }
+
+    /**
+     * Description
+     * 基本思想：（分治）
+     * 1.先从数列中取出一个数作为key值；
+     * 2.将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；
+     * 3.对左右两个小数列重复第二步，直至各区间只有1个数。
+     * Param [array]
+     * return void
+     */
+    private static void quickSort(int[] arr) {
+        sort(arr, 0, arr.length - 1);
+
+        System.out.print("QuickSort排序结果为：");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println("--------------------------");
+    }
+
+    private static void sort(int[] arr, int low, int high) {
+        int i, j, index;
+        if (low >= high) return;
+        i = low;
+        j = high;
+        index = arr[i];
+        while (i < j) {
+            while (i < j && arr[j] >= index) j--;
+            if (i < j) arr[i++] = arr[j];
+
+            while (i < j && arr[i] < index) i++;
+            if (i < j) arr[j--] = arr[i];
+
+            arr[i] = index;
+            sort(arr, low, i - 1);
+            sort(arr, i + 1, high);
         }
     }
 }
