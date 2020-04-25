@@ -12,7 +12,7 @@ public class JumpFloorII {
     public static void main(String[] args) {
         int target = 39;
         System.out.println("solveWithRecursion:" + solveWithRecursion(target));
-        System.out.println("solveWithRecursion:" + solveWithRecursion(target));
+        System.out.println("solveWithDp:" + solveWithDp(target));
         System.out.println("solveWithMathPow:" + solveWithMathPow(target));
     }
 
