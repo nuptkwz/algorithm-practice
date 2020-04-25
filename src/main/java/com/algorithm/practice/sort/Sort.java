@@ -12,8 +12,10 @@ public class Sort {
 //        bubbleSort(arr);
 //        selectionSort(arr);
 //        insertionSort(arr);
-        quickSort(arr);
+//        quickSort(arr);
+        mergeSort(arr);
     }
+
 
     /**
      * Description: 两个数比较大小，较大的数下沉，较小的数冒起来
@@ -98,9 +100,10 @@ public class Sort {
     /**
      * Description
      * 基本思想：（分治）
-     * 1.先从数列中取出一个数作为key值；
-     * 2.将比这个数小的数全部放在它的左边，大于或等于它的数全部放在它的右边；
-     * 3.对左右两个小数列重复第二步，直至各区间只有1个数。
+     * 1.先从数列中取出一个数作为基准数；
+     * 2.分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边；
+     * 3.对左右两个数列重复第二步，直至各区间只有1个数。
+     * 平均时间复杂度 O(N*logN)
      * Param [array]
      * return void
      */
@@ -114,12 +117,9 @@ public class Sort {
         System.out.println("--------------------------");
     }
 
-    private static void sort(int[] arr, int low, int high) {
-        int i, j, index;
-        if (low >= high) return;
-        i = low;
-        j = high;
-        index = arr[i];
+    private static void sort(int[] arr, int i, int j) {
+        if (i >= j) return;
+        int index = arr[i];
         while (i < j) {
             while (i < j && arr[j] >= index) j--;
             if (i < j) arr[i++] = arr[j];
@@ -128,12 +128,70 @@ public class Sort {
             if (i < j) arr[j--] = arr[i];
 
             arr[i] = index;
-            sort(arr, low, i - 1);
-            sort(arr, i + 1, high);
+            sort(arr, 0, i - 1);
+            sort(arr, i + 1, j);
         }
     }
 
+    /**
+     * 分而治之的思想
+     *
+     * @param arr
+     */
     private static void mergeSort(int[] arr) {
+        int[] temp = new int[arr.length];//在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间
+        sort(arr, 0, arr.length - 1, temp);
+        System.out.print("MergeSort排序结果为：");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println("--------------------------");
+    }
 
+    private static void sort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            //左边归并排序，使得左子序列有序
+            sort(arr, left, mid, temp);
+            //右边归并排序，使得右子序列有序
+            sort(arr, mid + 1, right, temp);
+            //将两个有序子数组合并操作
+            merge(arr, left, mid, right, temp);
+        }
+    }
+
+    /**
+     * 治
+     *
+     * @param arr
+     * @param left
+     * @param mid
+     * @param right
+     * @param temp
+     */
+    private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+        int i = left;//左序列指针
+        int j = mid + 1;//右序列指针
+        int t = 0;//临时数组指针
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[t++] = arr[i++];
+            } else {
+                temp[t++] = arr[j++];
+            }
+        }
+        //将左边剩余元素填充进temp中
+        while (i <= mid) {
+            temp[t++] = arr[i++];
+        }
+        //将右序列剩余元素填充进temp中
+        while (j <= right) {
+            temp[t++] = arr[j++];
+        }
+        t = 0;
+        //将temp中的元素全部拷贝到原数组中
+        while (left <= right) {
+            arr[left++] = temp[t++];
+        }
     }
 }
