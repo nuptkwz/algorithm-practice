@@ -13,6 +13,7 @@ public class Power {
         int exponent = -3;
         System.out.println("handleWithMathPowMethod:" + handleWithMathPowMethod(base, exponent));
         System.out.println(handleWithMultiply(2, -3));
+        System.out.println(handleWithRecursion(2, -3));
     }
 
     /**
@@ -38,5 +39,35 @@ public class Power {
             sum *= base;
         }
         return exponent > 0 ? sum : (1.0 / sum);
+    }
+
+    /**
+     * Description：采用递归写法，时间复杂度是LogN
+     * 分奇数和偶数，奇数为：
+     * Param [base, exponent]
+     * return double
+     */
+    private static double handleWithRecursion(double base, int exponent) {
+        if (exponent == 0) {
+            return 1;
+        }
+        if (exponent < 0) {
+            return 1.0 / handleWithRecursion(base, -exponent);
+        }
+        if (exponent % 2 == 1) {
+            return base * handleWithRecursion(base, exponent - 1);
+        }
+        return handleWithRecursion(base * base, exponent / 2);
+    }
+
+    /**
+     * Description
+     * 使用非递归的方法
+     * Param [base, exponent]
+     * return double
+     */
+    public static double handleWithNotRecursion(double base, int exponent) {
+        // TODO: 2020/4/27 : handleWithNotRecursion
+        return 1.0;
     }
 }
