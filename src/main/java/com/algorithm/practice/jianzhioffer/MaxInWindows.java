@@ -33,6 +33,7 @@ public class MaxInWindows {
             }
             Integer peek = queue.peek();
             list.add(peek);
+            queue.clear();
             index++;
         }
         return list;
