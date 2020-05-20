@@ -21,6 +21,7 @@ public class MaxInWindows {
         int[] arr = {2, 3, 4, 2, 6, 2, 5, 1};
         int size = 3;
         System.out.println(maxInWindowsWithPriorityQueue(arr, size));
+        System.out.println(handleWithArrayList(arr, size));
     }
 
     /**
@@ -59,7 +60,7 @@ public class MaxInWindows {
      * Param [num, size]
      * return java.util.ArrayList<java.lang.Integer>
      */
-    public ArrayList<Integer> handleWithArrayList(int[] num, int size) {
+    private static ArrayList<Integer> handleWithArrayList(int[] num, int size) {
         ArrayList<Integer> list = new ArrayList<>();
         if (num == null || num.length == 0 || size > num.length || size == 0) return list;
         for (int i = 0; i + size <= num.length; i++) {
