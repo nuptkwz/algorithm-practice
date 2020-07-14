@@ -1,5 +1,9 @@
 package com.algorithm.practice.sort;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Description 排序算法
  * Date 2020/4/19 11:55
@@ -14,6 +18,29 @@ public class Sort {
 //        insertionSort(arr);
 //        quickSort(arr);
         mergeSort(arr);
+
+        int [] candies = {2,3,5,1,3};
+        int extraCandies = 3;
+        List<Boolean> booleans = kidsWithCandies(candies, extraCandies);
+        System.out.println(booleans);
+    }
+
+    public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        if(candies.length<=0){
+            return new ArrayList<>();
+        }
+        List<Boolean> result = new ArrayList<>(candies.length);
+        int[] sortCandies = Arrays.copyOf(candies, candies.length);
+        Arrays.sort(sortCandies);
+        int max = sortCandies[sortCandies.length - 1];
+        for(int i=0;i<candies.length;i++){
+            if((candies[i]+extraCandies)>=max){
+                result.add(true);
+            }else{
+                result.add(false);
+            }
+        }
+        return result;
     }
 
 
@@ -109,6 +136,9 @@ public class Sort {
      */
     private static void quickSort(int[] arr) {
         sort(arr, 0, arr.length - 1);
+        int[] candies=  new int[4];
+        int[] sortCandies = new int[candies.length];
+        int[] ints = Arrays.copyOf(candies, candies.length);
 
         System.out.print("QuickSort排序结果为：");
         for (int num : arr) {
