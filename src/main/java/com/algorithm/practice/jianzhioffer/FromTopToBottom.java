@@ -16,20 +16,20 @@ public class FromTopToBottom {
 
     }
 
-    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
-        ArrayList<Integer> lists = new ArrayList<Integer>();
-        if (root == null)
-            return lists;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            TreeNode tree = queue.poll();
-            if (tree.getLeft() != null)
-                queue.offer(tree.getLeft());
-            if (tree.getRight() != null)
-                queue.offer(tree.getRight());
-            lists.add(tree.getVal());
-        }
-        return lists;
-    }
+//    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+//        ArrayList<Integer> lists = new ArrayList<Integer>();
+//        if (root == null)
+//            return lists;
+//        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+//        queue.offer(root);
+//        while (!queue.isEmpty()) {
+//            TreeNode tree = queue.poll();
+//            if (tree.getLeft() != null)
+//                queue.offer(tree.getLeft());
+//            if (tree.getRight() != null)
+//                queue.offer(tree.getRight());
+//            lists.add(tree.getVal());
+//        }
+//        return lists;
+//    }
 }
