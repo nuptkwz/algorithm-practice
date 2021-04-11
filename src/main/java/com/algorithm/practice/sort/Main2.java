@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 /**
  * Description
+ * 1000个小朋友，每人拿一个素数，报出一个数字，是否有连续值加起来等于这个数字
+ * 是则"yes"，否则"no"
+ * 2
+ * 26
+ * 666
  * Date 2021/4/11 14:04
  * Created by kwz
  */
