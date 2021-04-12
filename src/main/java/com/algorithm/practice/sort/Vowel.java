@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Date 2021/4/11 13:43
  * Created by kwz
  */
-public class Main {
+public class Vowel {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
