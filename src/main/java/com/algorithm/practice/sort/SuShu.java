@@ -15,7 +15,7 @@ import java.util.Scanner;
  * Date 2021/4/11 14:04
  * Created by kwz
  */
-public class Main2 {
+public class SuShu {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
