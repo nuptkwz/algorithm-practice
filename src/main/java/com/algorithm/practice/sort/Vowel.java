@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Description
+ * 元音转大写，辅音转小写
  * Date 2021/4/11 13:43
  * Created by kwz
  */
